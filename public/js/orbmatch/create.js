@@ -88,10 +88,12 @@
 
             // x, and y relative to pouch
             var x = pt.x - craft.x,
-            y = pt.y - craft.y;
+            y = pt.y - craft.y,
+            tileX = Math.floor(x / 32),
+            tileY = Math.floor(y / 32),
+            index = tileY * 3 + tileX;
 
-            console.log(x, y);
-            console.log(craft.name);
+            console.log(index);
 
         });
 

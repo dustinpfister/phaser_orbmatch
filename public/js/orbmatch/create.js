@@ -145,12 +145,10 @@
 
         orbSprite.events.onDragStop.add(function (orbSprite) {
 
-            console.log('drag stop');
-            console.log(orbSprite.overlap(pouch));
-            console.log(orbSprite.input.dragStartPoint);
+            var x = orbSprite.x - pouch.x,
+            y = orbSprite.y - pouch.y;
 
-            // if not over the pouch
-            if (!orbSprite.overlap(pouch)) {
+            if (x < 0 || y < 0 || x >= pouch.width || y >= pouch.height) {
 
                 // back home
                 var sp = orbSprite.input.dragStartPoint;

@@ -1,6 +1,3 @@
-
-var game = new Phaser.Game(320, 240, Phaser.AUTO, 'phaser_container');
-
 game.state.add('boot', {
 
     create: function () {
@@ -15,7 +12,7 @@ game.state.add('boot', {
                 layers: [[1, 1, 1, 1,
                           1, 0, 0, 1,
                           1, 0, 0, 1,
-                          1, 1, 1, 1]];
+                          1, 1, 1, 1]]
 
             });
 
@@ -31,4 +28,4 @@ game.state.add('boot', {
 
 });
 
-game.state.start('boot');
+game.state.start('create');

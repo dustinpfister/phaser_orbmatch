@@ -1,10 +1,12 @@
 (function () {
 
     // create main game data object if it is not there
-    game.data = game.data || {};
+    var data = game.data = game.data || {};
+
+    data.pouch = game.data.pouch || [];
 
     // data object for create state
-    game.data.create = {
+    data.sprite = {
 
         pouch: null, // what will be a ref to the pouch sprite
         craft: null, // what will be a ref to the craft sprite
@@ -35,7 +37,7 @@
         });
 
         // sprite for pouch
-        var pouch = game.data.create.pouch = game.add.sprite(32, 64, 'sheet_pouch', 0);
+        var pouch = data.sprite.pouch = game.add.sprite(32, 64, 'sheet_pouch', 0);
         pouch.name = 'pouch';
 
         // pouch events
@@ -47,7 +49,7 @@
             y = pt.y - pouch.y;
 
             console.log(x, y);
-			console.log(pouch.name);
+            console.log(pouch.name);
 
         });
 
@@ -77,7 +79,7 @@
         });
 
         // sprite for pouch
-        var craft = game.data.create.craft = game.add.sprite(32 * 6, 64, 'sheet_craft', 0);
+        var craft = data.sprite.craft = game.add.sprite(32 * 6, 64, 'sheet_craft', 0);
         craft.name = 'craft';
         craft.inputEnabled = true;
 
@@ -95,6 +97,9 @@
 
     };
 
+    // make an orb that will be placed in the pouch
+    mkOrb = function () {}
+
     // add the game state
     game.state.add('create', {
 
@@ -102,6 +107,8 @@
 
             mkPouch();
             mkCraft();
+
+            console.log(data);
 
         }
 

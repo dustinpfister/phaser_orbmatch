@@ -23,6 +23,7 @@ var Pouch = (function () {
     };
 
     // place the given orb at the first empty index
+    // returns the index
     var placeOrb = function (orb) {
 
         var i = 0;
@@ -38,6 +39,8 @@ var Pouch = (function () {
             i += 1;
 
         }
+
+        return i;
 
     }
 
@@ -72,14 +75,14 @@ var Pouch = (function () {
 
         if (this.count < this.capacity) {
 
-            placeOrb.call(this, orb);
+            var i = placeOrb.call(this, orb);
             this.count += 1;
 
-            cb.call(this,null, orb,this);
+            cb.call(this, null, orb, i,this);
 
         } else {
 
-            cb.call(this,'pouch full', null,this);
+            cb.call(this, 'pouch full', null, null, this);
 
         }
 

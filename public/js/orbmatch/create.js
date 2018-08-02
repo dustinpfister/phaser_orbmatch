@@ -102,8 +102,8 @@
 
     };
 
-    // make an orb sprite
-    var mkOrb = function (orb) {
+    // make an orb sprite with the given orb, and starting index in the pouch
+    var mkOrb = function (orb, index) {
 
         // using fly graphics
         var flyOrb = new FlyGFX.GFX({
@@ -131,12 +131,14 @@
         //bitmap.context.fillStyle = '#ff0000';
         bitmap.context.drawImage(flyOrb.genCanvas(), 0, 0);
 
-        var sprite = game.add.sprite(0, 0, bitmap);
+		
+		var pouch = game.data.sprite.pouch;
+		
+        var orbSprite = game.add.sprite(pouch.x, pouch.y, bitmap);
 
-        sprite.inputEnabled = true;
-        sprite.input.draggable = true;
-
-        console.log(game.add);
+        // sprite should be draggable
+        orbSprite.inputEnabled = true;
+        orbSprite.input.draggable = true;
 
     };
 
@@ -149,11 +151,11 @@
             mkCraft();
 
             // testing out make new pouch method
-            data.pouch.makeNew([1, 0, 0, 0], function (err, orb) {
+            data.pouch.makeNew([1, 0, 0, 0], function (err, orb, index) {
 
                 if (orb) {
 
-                    mkOrb(orb);
+                    mkOrb(orb, index);
 
                 }
 

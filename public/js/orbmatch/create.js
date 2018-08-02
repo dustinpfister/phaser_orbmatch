@@ -1,39 +1,32 @@
-game.state.add('create', {
+(function () {
 
-    create: function () {
+    var mkPouch = function () {
 
         // using fly graphics
-        var flyGrid = new FlyGFX.GFX({
-
+        var flyPouch = new FlyGFX.GFX({
                 game: this.game,
                 width: 32 * 4,
                 pxSize: 1,
                 palette: [0x000000, 0x4a4a4a, 0x8a8a8a],
                 layers: [function (x, y, i) {
-
                         if (x % 32 === 0 || y % 32 === 0) {
-
                             return 2;
-
                         }
-
                         return 1;
-
                     }
                 ]
-
             });
 
-        // making sprite sheet with fly graphics
-        var bxSheet = flyGrid.generateSheet({
-                key: 'sheet_pouch'
-            });
+        // sheet for pouch
+        flyPouch.generateSheet({
+            key: 'sheet_pouch'
+        });
 
-        // adding sprite with sheet
+        // sprite for pouch
         var pouch = game.add.sprite(50, 50, 'sheet_pouch', 0);
-
         pouch.inputEnabled = true;
 
+        // pouch events
         pouch.events.onInputDown.add(function (pouch, pt) {
 
             // x, and y relative to pouch
@@ -44,6 +37,18 @@ game.state.add('create', {
 
         });
 
-    }
+    };
 
-});
+    // add the game state
+    game.state.add('create', {
+
+        create: function () {
+
+            mkPouch();
+
+        }
+
+    });
+
+}
+    ());

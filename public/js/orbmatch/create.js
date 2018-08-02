@@ -3,7 +3,14 @@
     // create main game data object if it is not there
     var data = game.data = game.data || {};
 
-    data.pouch = game.data.pouch || [];
+    data.pouch = game.data.pouch || new Pouch.Pouch({width:4,height:4});
+	
+	data.pouch.makeNew([1,0,0,0], function(){
+		
+		console.log('pouch:');
+		console.log(this.orbs);
+		
+	})
 
     // data object for create state
     data.sprite = {

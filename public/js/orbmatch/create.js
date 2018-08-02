@@ -30,12 +30,19 @@ game.state.add('create', {
             });
 
         // adding sprite with sheet
-        var pouch = game.add.sprite(0, 0, 'sheet_pouch', 0);
+        var pouch = game.add.sprite(50, 50, 'sheet_pouch', 0);
 
-        console.log(game.data);
-		
-		
-		
+        pouch.inputEnabled = true;
+
+        pouch.events.onInputDown.add(function (pouch, pt) {
+
+            // x, and y relative to pouch
+            var x = pt.x - pouch.x,
+            y = pt.y - pouch.y;
+
+            console.log(x, y);
+
+        });
 
     }
 

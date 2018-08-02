@@ -140,8 +140,26 @@
         orbSprite.input.draggable = true;
 
         orbSprite.input.snapOnRelease = true;
-        orbSprite.input.snapX = pouch.x;
-        orbSprite.input.snapY = pouch.y;
+        orbSprite.input.snapX = 32;
+        orbSprite.input.snapY = 32;
+
+        orbSprite.events.onDragStop.add(function (orbSprite) {
+
+            console.log('drag stop');
+            console.log(orbSprite.overlap(pouch));
+            console.log(orbSprite.input.dragStartPoint);
+
+            // if not over the pouch
+            if (!orbSprite.overlap(pouch)) {
+
+                // back home
+                var sp = orbSprite.input.dragStartPoint;
+                orbSprite.x = sp.x;
+                orbSprite.y = sp.y;
+
+            }
+
+        });
 
     };
 

@@ -133,6 +133,9 @@
 
         var sprite = game.add.sprite(0, 0, bitmap);
 
+        sprite.inputEnabled = true;
+        sprite.input.draggable = true;
+
         console.log(game.add);
 
     };

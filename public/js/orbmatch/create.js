@@ -3,14 +3,10 @@
     // create main game data object if it is not there
     var data = game.data = game.data || {};
 
-    data.pouch = game.data.pouch || new Pouch.Pouch({width:4,height:4});
-	
-	data.pouch.makeNew([1,0,0,0], function(){
-		
-		console.log('pouch:');
-		console.log(this.orbs);
-		
-	})
+    data.pouch = game.data.pouch || new Pouch.Pouch({
+            width: 4,
+            height: 4
+        });
 
     // data object for create state
     data.sprite = {
@@ -106,8 +102,40 @@
 
     };
 
-    // make an orb that will be placed in the pouch
-    mkOrb = function () {}
+    // make an orb sprite
+    var mkOrb = function (orb) {
+
+        // using fly graphics
+        var flyOrb = new FlyGFX.GFX({
+                game: this.game,
+                width: 32,
+                pxSize: 1,
+                palette: [0x000000, 0xff0000, 0x8a8a8a],
+                layers: [function (x, y, i) {
+
+                        if (Phaser.Math.distance(x, y, 15, 15) < 14) {
+
+                            return 1
+
+                        }
+
+                    }
+                ]
+            });
+
+        // sheet for pouch
+        //console.log(flyOrb.genCanvas());
+        var bitmap = new Phaser.BitmapData(game, 'orb_bitmap', 32, 32);
+        //bitmap.canvas = flyOrb.genCanvas();
+
+        //bitmap.context.fillStyle = '#ff0000';
+        bitmap.context.drawImage(flyOrb.genCanvas(), 0, 0);
+
+        var sprite = game.add.sprite(0, 0, bitmap);
+
+        console.log(game.add);
+
+    };
 
     // add the game state
     game.state.add('create', {
@@ -117,7 +145,16 @@
             mkPouch();
             mkCraft();
 
-            console.log(data);
+            // testing out make new pouch method
+            data.pouch.makeNew([1, 0, 0, 0], function (err, orb) {
+
+                if (orb) {
+
+                    mkOrb(orb);
+
+                }
+
+            });
 
         }
 

@@ -131,14 +131,17 @@
         //bitmap.context.fillStyle = '#ff0000';
         bitmap.context.drawImage(flyOrb.genCanvas(), 0, 0);
 
-		
-		var pouch = game.data.sprite.pouch;
-		
+        var pouch = game.data.sprite.pouch;
+
         var orbSprite = game.add.sprite(pouch.x, pouch.y, bitmap);
 
         // sprite should be draggable
         orbSprite.inputEnabled = true;
         orbSprite.input.draggable = true;
+
+        orbSprite.input.snapOnRelease = true;
+        orbSprite.input.snapX = pouch.x;
+        orbSprite.input.snapY = pouch.y;
 
     };
 

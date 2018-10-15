@@ -269,7 +269,7 @@ var Plugin_Orb = function (game, options) {
 
         }
 
-    }
+    };
 
     // add the plugin
     game.plugins.add(plug, options);
